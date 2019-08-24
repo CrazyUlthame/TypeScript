@@ -1,26 +1,22 @@
-interface Lakes{
-    name: string,
-    area: number,
-    length: number,
-    depth: number,
-    isFreshwater: boolean,
-    countries: string[]
+interface Enemy{
+    readonly size: Number;
+    health: number;
+    range: number,
+    readonly damage: number
 }
 
-let firstLake: Lakes = {
-    name: 'Caspian Sea',
-    length: 1199,
-    depth:1025,
-    area: 371000,
-    isFreshwater:false,
-    countries:['Kazakhstan','Russia','Turkmenistan','Iran']
+let tank:Enemy = {
+    size: 50,
+    health:100,
+    range:60,
+    damage:12
 }
 
-let secondLake: Lakes = {
-    name:'Superior',
-    depth: 406.3,
-    length:616,
-    area: 82100,
-    isFreshwater: true,
-    countries: ['Canada','United States']
+interface EnemyHit{
+    (name: Enemy, damageDone: number): number;
+}
+
+let tankHit: EnemyHit = function(tankName: Enemy, damageDone: number){
+    tankName.health -= damageDone;
+    return tankName.health;
 }
